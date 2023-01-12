@@ -2,6 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
+Bei der Anwendung handelt es sich um einen einfachen Warenkorb. Wir gehen davon aus, dass jeder Artikel nur einmal verfügbar ist. Wird ein Artikel in den Warenkorb geschoben, ist er nicht mehr in der Produktliste sichtbar.
+
+Anforderungen:
+- Verwendung von NgRx für das State Management: https://ngrx.io/guide/store .
+- Produkt- und Warenkorb-Bereich sollen jeweils eine eigenständige Angular-Komponente sein.
+- Es gibt zwei States: “products” (Produkte im linken Bereich) und “cart” (Warenkorb im rechten Bereich).
+- Klickt man auf “In den Warenkorb” soll der Artikel aus dem State “product” entfernt und in den State “cart” eingefügt werden.
+- Klickt man auf “Entfernen” soll das genau andersherum funktionieren.
+- Wird ein Artikel in den Warenkorb hinzugefügt, soll für einige Sekunden die grüne Meldung “Neuer Artikel hinzugefügt” erscheinen und dann automatisch wieder verschwinden. Die Anzeige dieser Meldung sollte über eine Subscription auf den State “cart” gelöst werden.
+- Das Design ist nebensächlich. Wenn ihr wollt und Zeit habt, könnt ihr gern PrimeNg einsetzen, um den Umgang damit zu lernen.
+- Wenn ihr wollt könnt ihr auch Routing verwenden um die beiden Bereiche in jeweils einer Seite darzustellen.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
