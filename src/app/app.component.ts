@@ -1,22 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from "./_shared/models/Product";
+import { Store } from "@ngrx/store";
+import { ProductsState } from "./_shared/store/reducers/products.reducer";
+import { Observable } from "rxjs";
+import { CartState } from "./_shared/store/reducers/cart.reducer";
+import { addProduct, removeProduct } from "./_shared/store/actions/cart.action";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  public products: Product[] = [
-    { id: 0, title: 'Produkt Eins', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing dolor', price: 145},
-    { id: 2, title: 'Produkt Drei', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr', price: 27},
-    { id: 3, title: 'Produkt Vier', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing dolor', price: 1065},
-    { id: 4, title: 'Produkt Fünf', description: 'At accusam dolor sit amet, consetetur sit dolores elitr', price: 459},
-    { id: 6, title: 'Produkt Sieben', description: 'At vero eos et accusam et justo duo dolores et ea rebum', price: 12},
-  ]
+export class AppComponent implements OnInit{
+  products$: Observable<readonly Product[]>
+  cart$: Observable<readonly Product[]>
+  cartItems = 0;
+  showGreenMessage = false;
+  showRedMessage = false;
 
-  public cart: Product[] = [
-    { id: 1, title: 'Produkt Zwei', description: 'Lorem ipsum dolor sit amet, consetetur sadipscing dolor', price: 145},
-    { id: 5, title: 'Produkt Sechs', description: 'At accusam dolor sit amet, consetetur sit dolores elitr', price: 459}
-  ]
+  constructor(
+    private productsStore: Store<ProductsState>,
+    private cartStore: Store<CartState>,
+  ) {
+    this.products$ = this.productsStore.select('products');
+    this.cart$ = this.cartStore.select('cart');
+  }
+
+  ngOnInit() {
+    this.subscribeToCart();
+  }
+
+  private subscribeToCart(): void {
+    this.cart$.subscribe(async (product: readonly Product[]) => {
+      // Warenkorbmeldung anzeigen je nach hinzugefügt oder entfernt
+      if(product.length !== 0 && this.cartItems < product.length) {
+        this.showGreenMessage = true;
+      }
+
+      if(this.cartItems > product.length) {
+        this.showRedMessage = true;
+      }
+
+      // Anzahl Warenkorbartikel updaten
+      this.cartItems = product.length;
+
+      // Alle Meldungen nach einer Sekunde schließen
+      setTimeout(() => {
+        this.showGreenMessage = false;
+        this.showRedMessage= false;
+      }, 1000)
+    })
+
+  }
+
+  public addProductToCart(product: Product) {
+    this.cartStore.dispatch(addProduct({ cart: product }));
+  }
+
+  public removeProductFromCart(product: Product) {
+    this.cartStore.dispatch(removeProduct({ cart: product }));
+  }
+
 }
