@@ -11,6 +11,10 @@ import { CartComponent } from './components/cart/cart.component';
 import { MenuComponent } from './_shared/components/menu/menu.component';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
+import { ProductsEffects } from "./_shared/store/effects/products.effects";
+import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { HttpClientModule } from "@angular/common/http";
+import { TestdataService } from "./_shared/services/testdata.service";
 
 @NgModule({
   declarations: [
@@ -20,13 +24,15 @@ import { EffectsModule } from "@ngrx/effects";
     MenuComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({products: productsReducer, cart: cartReducer}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 5,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ProductsEffects]),
+    HttpClientInMemoryWebApiModule.forRoot(TestdataService)
   ],
   providers: [],
   bootstrap: [AppComponent]
