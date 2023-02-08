@@ -6,10 +6,16 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { productsReducer } from "./_shared/store/reducers/products.reducer";
 import { cartReducer } from "./_shared/store/reducers/cart.reducer";
+import { ProductsComponent } from './components/products/products.component';
+import { CartComponent } from './components/cart/cart.component';
+import { MenuComponent } from './_shared/components/menu/menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductsComponent,
+    CartComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

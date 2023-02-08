@@ -1,0 +1,5 @@
+<button class="button" routerLink="">Produkte</button>&nbsp;
+<button class="button"routerLink="/cart">Warenkorb ({{ cartItems }})</button>
+
+<div class="greenMessage" *ngIf="showGreenMessage">Neuer Artikel hinzugefügt</div>
+<div class="redMessage" *ngIf="showRedMessage">Artikel entfernt</div>

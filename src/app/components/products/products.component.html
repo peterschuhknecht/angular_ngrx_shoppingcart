@@ -1,0 +1,11 @@
+<div class="products">
+  Produkte
+  <div *ngFor="let item of products$ | async" class="product">
+    <div class="title">{{ item.title }}</div>
+    <div class="price">{{ item.price }} Euro</div>
+    <div style="clear: both;"></div>
+    <div class="description">{{ item.description }}</div>
+    <button class="button" (click)="addProductToCart(item)">In den Warenkorb</button>
+    <div style="clear: both;"></div>
+  </div>
+</div>
