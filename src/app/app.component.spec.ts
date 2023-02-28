@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { provideMockStore } from "@ngrx/store/testing";
 import { StoreModule } from "@ngrx/store";
+import { MatchersComponent } from "./_shared/components/matchers/matchers.component";
+import { MenuComponent } from "./_shared/components/menu/menu.component";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -12,7 +14,9 @@ describe('AppComponent', () => {
         StoreModule.forRoot(provideMockStore)
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MatchersComponent,
+        MenuComponent
       ],
     }).compileComponents();
   });
