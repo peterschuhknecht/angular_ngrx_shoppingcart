@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class MatchersComponent {
 
+  public testFunction(): void {
+    throw new Error("Oh there is an error!");
+  }
+
 }
