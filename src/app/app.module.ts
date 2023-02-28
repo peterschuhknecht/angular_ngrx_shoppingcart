@@ -12,7 +12,7 @@ import { MenuComponent } from './_shared/components/menu/menu.component';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 import { ProductsEffects } from "./_shared/store/effects/products.effects";
-import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 import { HttpClientModule } from "@angular/common/http";
 import { TestdataService } from "./_shared/services/testdata.service";
 
@@ -21,7 +21,7 @@ import { TestdataService } from "./_shared/services/testdata.service";
     AppComponent,
     ProductsComponent,
     CartComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     HttpClientModule,
