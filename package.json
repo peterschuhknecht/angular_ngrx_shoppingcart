@@ -22,7 +22,10 @@
     "@ngrx/schematics": "^15.2.1",
     "@ngrx/store": "^15.2.1",
     "@ngrx/store-devtools": "^15.2.1",
+    "@types/jest": "^29.4.0",
     "angular-in-memory-web-api": "^0.15.0",
+    "jest": "^29.4.3",
+    "jest-preset-angular": "^13.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
