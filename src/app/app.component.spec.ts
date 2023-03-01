@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { provideMockStore } from "@ngrx/store/testing";
 import { StoreModule } from "@ngrx/store";
-import { MatchersComponent } from "./_shared/components/matchers/matchers.component";
+import { TestComponent } from "./_shared/components/test/test.component";
 import { MenuComponent } from "./_shared/components/menu/menu.component";
 
 describe('AppComponent', () => {
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        MatchersComponent,
+        TestComponent,
         MenuComponent
       ],
     }).compileComponents();

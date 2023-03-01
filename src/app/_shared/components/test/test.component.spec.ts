@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchersComponent } from './matchers.component';
+import { TestComponent } from './test.component';
 
 describe('MatchersComponent', () => {
-  let component: MatchersComponent;
-  let fixture: ComponentFixture<MatchersComponent>;
+  let component: TestComponent;
+  let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MatchersComponent]
+      declarations: [TestComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(MatchersComponent);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -69,7 +69,7 @@ describe('MatchersComponent', () => {
 
   // Gleitkommazahlen
   it('Gleitkommazahlen', () => {
-    const g = 0.1 + 0.3;
+    //const g = 0.1 + 0.3;
     // expect(g).toBe(0.3);       Funktioniert nicht wegen Rundungsfehler
     // expect(g).toEqual(0.3);    Funktioniert nicht wegen Rundungsfehler
   });

@@ -15,7 +15,7 @@ import { ProductsEffects } from "./_shared/store/effects/products.effects";
 import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 import { HttpClientModule } from "@angular/common/http";
 import { TestdataService } from "./_shared/services/testdata.service";
-import { MatchersComponent } from "./_shared/components/matchers/matchers.component";
+import { TestComponent } from "./_shared/components/test/test.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { MatchersComponent } from "./_shared/components/matchers/matchers.compon
     ProductsComponent,
     CartComponent,
     MenuComponent,
-    MatchersComponent
+    TestComponent
   ],
   imports: [
     HttpClientModule,
