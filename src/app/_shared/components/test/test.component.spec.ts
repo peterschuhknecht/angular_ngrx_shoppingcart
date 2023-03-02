@@ -1,14 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestComponent } from './test.component';
+import { HttpClientModule, HttpErrorResponse } from "@angular/common/http";
+import { TestService } from "./services/test.service";
+import { of, throwError } from "rxjs";
 
 describe('MatchersComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
+  let testServiceMock: any;
 
   beforeEach(async () => {
+    testServiceMock = {
+      getDataV1: jest.fn()
+    }
     await TestBed.configureTestingModule({
-      declarations: [TestComponent]
+      imports: [HttpClientModule],
+      declarations: [TestComponent],
+      providers: [
+        {
+          provide: TestService, useValue: testServiceMock
+        }
+      ]
     })
       .compileComponents();
 
@@ -20,6 +33,8 @@ describe('MatchersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // 1. Matchers
 
   // Exakt gleich
   it('Zwei plus zwei', () => {
@@ -96,5 +111,26 @@ describe('MatchersComponent', () => {
     expect(() => component.testFunction()).toThrow();
     expect(() => component.testFunction()).toThrow(Error);
     expect(() => component.testFunction()).toThrow('Oh there is an error!');
+  });
+
+  // Komponenten Tests
+  it('should getServiceData set serviceData', () => {
+    const expRes = {
+      name: 'Test'
+    };
+    jest.spyOn(testServiceMock, 'getDataV1').mockReturnValue(of(expRes));
+    component.getServiceData();
+    expect(component.serviceData).toBe(expRes);
+  });
+
+  it('should getServiceData set error Message', () => {
+    const errorResponse = new HttpErrorResponse({
+      error: 'test 404 error',
+      status: 404,
+      statusText: 'Not Found'
+    })
+    jest.spyOn(testServiceMock, 'getDataV1').mockReturnValue(throwError(() => errorResponse));
+    component.getServiceData();
+    expect(component.errorMessage).toBe('Not Found');
   });
 });

@@ -5,11 +5,13 @@ import { provideMockStore } from "@ngrx/store/testing";
 import { StoreModule } from "@ngrx/store";
 import { TestComponent } from "./_shared/components/test/test.component";
 import { MenuComponent } from "./_shared/components/menu/menu.component";
+import { HttpClientModule } from "@angular/common/http";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        HttpClientModule,
         RouterTestingModule,
         StoreModule.forRoot(provideMockStore)
       ],
