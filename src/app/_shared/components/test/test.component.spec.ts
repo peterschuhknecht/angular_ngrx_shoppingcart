@@ -5,7 +5,7 @@ import { HttpClientModule, HttpErrorResponse } from "@angular/common/http";
 import { TestService } from "./services/test.service";
 import { of, throwError } from "rxjs";
 
-describe('MatchersComponent', () => {
+describe('TestComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let testServiceMock: any;
