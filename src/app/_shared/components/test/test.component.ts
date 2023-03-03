@@ -9,6 +9,7 @@ import { TestService } from "./services/test.service";
 export class TestComponent implements OnInit{
   public serviceData: any;
   public errorMessage: any;
+  public timeoutResponse: string = 'test';
 
   constructor(private testService: TestService) {
   }
@@ -30,11 +31,11 @@ export class TestComponent implements OnInit{
     });
   }
 
-  public testFunction(): void {
+  public throwErrorFunction(): void {
     throw new Error("Oh there is an error!");
   }
 
-  public setGreeting(time: number) {
+  public getGreeting(time: number) {
     if(time < 10) {
       return 'Good morning';
     } else if (time < 20) {
@@ -42,6 +43,14 @@ export class TestComponent implements OnInit{
     } else {
       return 'Good evening';
     }
+  }
+
+  public checkSetTimeout(): void {
+    setTimeout(() => {
+      console.log('Inside setTimeout');
+      this.timeoutResponse = 'setTimeoutCheck';
+    }, 1000)
+
   }
 
 }

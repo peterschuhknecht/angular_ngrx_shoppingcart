@@ -11,6 +11,8 @@ describe('TestComponent', () => {
   let testServiceMock: any;
 
   beforeEach(async () => {
+    jest.useFakeTimers(); // Für asynchrones Testen
+    jest.spyOn(global, 'setTimeout'); // Für asynchrones Testen
     testServiceMock = {
       getDataV1: jest.fn()
     }
@@ -107,10 +109,10 @@ describe('TestComponent', () => {
   });
 
   // Exceptions
-  it('testFunction throw Error', () => {
-    expect(() => component.testFunction()).toThrow();
-    expect(() => component.testFunction()).toThrow(Error);
-    expect(() => component.testFunction()).toThrow('Oh there is an error!');
+  it('throwErrorFunction throw Error', () => {
+    expect(() => component.throwErrorFunction()).toThrow();
+    expect(() => component.throwErrorFunction()).toThrow(Error);
+    expect(() => component.throwErrorFunction()).toThrow('Oh there is an error!');
   });
 
   // 2. Komponenten Tests
@@ -136,15 +138,25 @@ describe('TestComponent', () => {
 
   // 3. Branches
   it('should greeting set Good morning', () => {
-    expect(component.setGreeting(9)).toBe('Good morning');
+    expect(component.getGreeting(9)).toBe('Good morning');
   });
 
   it('should greeting set Good day', () => {
-    expect(component.setGreeting(14)).toBe('Good day');
+    expect(component.getGreeting(14)).toBe('Good day');
   });
 
   it('should greeting set Good evening', () => {
-    expect(component.setGreeting(22)).toBe('Good evening');
+    expect(component.getGreeting(22)).toBe('Good evening');
+  });
+
+  // 4. Asynchrones Testen
+  it('should set timeoutResonse variable to setTimeoutCheck ', () => {
+    component.checkSetTimeout();
+    expect(component.timeoutResponse).not.toBe('setTimeoutCheck'); // Vor setTimeout complete
+    jest.advanceTimersByTime(1000); // 1000 ms warten
+    // jest.runAllTimers(); // Geht auch / startet alle Timer
+    expect(component.timeoutResponse).toBe('setTimeoutCheck'); // Nach setTimeout complete
+    expect(setTimeout).toBeCalledTimes(1)
   });
 
 });
