@@ -113,7 +113,7 @@ describe('TestComponent', () => {
     expect(() => component.testFunction()).toThrow('Oh there is an error!');
   });
 
-  // Komponenten Tests
+  // 2. Komponenten Tests
   it('should getServiceData set serviceData', () => {
     const expRes = {
       name: 'Test'
@@ -133,4 +133,18 @@ describe('TestComponent', () => {
     component.getServiceData();
     expect(component.errorMessage).toBe('Not Found');
   });
+
+  // 3. Branches
+  it('should greeting set Good morning', () => {
+    expect(component.setGreeting(9)).toBe('Good morning');
+  });
+
+  it('should greeting set Good day', () => {
+    expect(component.setGreeting(14)).toBe('Good day');
+  });
+
+  it('should greeting set Good evening', () => {
+    expect(component.setGreeting(22)).toBe('Good evening');
+  });
+
 });

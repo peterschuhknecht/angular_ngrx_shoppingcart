@@ -34,4 +34,14 @@ export class TestComponent implements OnInit{
     throw new Error("Oh there is an error!");
   }
 
+  public setGreeting(time: number) {
+    if(time < 10) {
+      return 'Good morning';
+    } else if (time < 20) {
+      return 'Good day';
+    } else {
+      return 'Good evening';
+    }
+  }
+
 }
