@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from "../../models/Product";
-import { Observable } from "rxjs";
-import { CartState } from "../../store/reducers/cart.reducer";
-import { Store } from "@ngrx/store";
+import { Product } from '../../models/Product';
+import { Observable } from 'rxjs';
+import { CartState } from '../../store/reducers/cart.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  cart$: Observable<readonly Product[]>
+  cart$: Observable<readonly Product[]>;
   cartItems = 0;
   showGreenMessage = false;
   showRedMessage = false;
 
-  constructor(
-    private cartStore: Store<CartState>,
-  ) {
+  constructor(private cartStore: Store<CartState>) {
     this.cart$ = this.cartStore.select('cart');
   }
 
@@ -43,9 +41,7 @@ export class MenuComponent implements OnInit {
       setTimeout(() => {
         this.showGreenMessage = false;
         this.showRedMessage = false;
-      }, 1000)
-    })
-
+      }, 1000);
+    });
   }
-
 }

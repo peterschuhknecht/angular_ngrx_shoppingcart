@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { provideMockStore } from "@ngrx/store/testing";
-import { StoreModule } from "@ngrx/store";
-import { TestComponent } from "./_shared/components/test/test.component";
-import { MenuComponent } from "./_shared/components/menu/menu.component";
-import { HttpClientModule } from "@angular/common/http";
+import { provideMockStore } from '@ngrx/store/testing';
+import { StoreModule } from '@ngrx/store';
+import { TestComponent } from './_shared/components/test/test.component';
+import { MenuComponent } from './_shared/components/menu/menu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,13 +13,9 @@ describe('AppComponent', () => {
       imports: [
         HttpClientModule,
         RouterTestingModule,
-        StoreModule.forRoot(provideMockStore)
+        StoreModule.forRoot(provideMockStore),
       ],
-      declarations: [
-        AppComponent,
-        TestComponent,
-        MenuComponent
-      ],
+      declarations: [AppComponent, TestComponent, MenuComponent],
     }).compileComponents();
   });
 

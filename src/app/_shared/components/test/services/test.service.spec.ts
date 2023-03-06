@@ -1,5 +1,5 @@
 import { TestService } from './test.service';
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
 describe('TestService', () => {
   let service: TestService;
@@ -9,8 +9,8 @@ describe('TestService', () => {
     // TestBed.configureTestingModule({});
     // service = TestBed.inject(TestService);
     httpClientSpy = {
-      get: jest.fn()
-    }
+      get: jest.fn(),
+    };
     service = new TestService(httpClientSpy);
   });
 
@@ -19,7 +19,7 @@ describe('TestService', () => {
   });
 
   it('should test getDataV1 function', () => {
-    const res = "Testdata";
+    const res = 'Testdata';
     const url = 'https://jsonplaceholder.typicode.com/todos/1';
     jest.spyOn(httpClientSpy, 'get').mockReturnValue(of(res));
     service.getDataV1();

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from "rxjs";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError } from "rxjs/operators";
+import { Observable, tap } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   public getDataV1(): Observable<any> {
     const url = 'https://jsonplaceholder.typicode.com/todos/1';
@@ -32,6 +30,6 @@ export class TestService {
       const message = `server returned code ${error.status} with body ${error.error}`;
       // TODO: transforming error for ui
       throw new Error(`${operation} failed: ${message}`);
-    }
+    };
   }
 }

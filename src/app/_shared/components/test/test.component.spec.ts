@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestComponent } from './test.component';
-import { HttpClientModule, HttpErrorResponse } from "@angular/common/http";
-import { TestService } from "./services/test.service";
-import { of, throwError } from "rxjs";
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { TestService } from './services/test.service';
+import { of, throwError } from 'rxjs';
 
 describe('TestComponent', () => {
   let component: TestComponent;
@@ -14,18 +14,18 @@ describe('TestComponent', () => {
     jest.useFakeTimers(); // Für asynchrones Testen
     jest.spyOn(global, 'setTimeout'); // Für asynchrones Testen
     testServiceMock = {
-      getDataV1: jest.fn()
-    }
+      getDataV1: jest.fn(),
+    };
     await TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [TestComponent],
       providers: [
         {
-          provide: TestService, useValue: testServiceMock
-        }
-      ]
-    })
-      .compileComponents();
+          provide: TestService,
+          useValue: testServiceMock,
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
@@ -52,8 +52,8 @@ describe('TestComponent', () => {
 
   // Objekte
   it('Object values', () => {
-    const data = {name: "Tester"}
-    expect(data).toEqual({name: "Tester"});
+    const data = { name: 'Tester' };
+    expect(data).toEqual({ name: 'Tester' });
   });
 
   // Wahrhaftigkeit
@@ -93,18 +93,13 @@ describe('TestComponent', () => {
 
   // Strings
   it('Kein H aber D in Demotext vorhanden', () => {
-    expect('Demotext').toMatch('D')
-    expect('Demotext').not.toMatch('H')
+    expect('Demotext').toMatch('D');
+    expect('Demotext').not.toMatch('H');
   });
 
   // Array
   it('Im Warenkorb ist ein Kleid', () => {
-    const warenkorb = [
-      "Hose",
-      "Kleid",
-      "Hut",
-      "Hemd"
-    ]
+    const warenkorb = ['Hose', 'Kleid', 'Hut', 'Hemd'];
     expect(warenkorb).toContain('Kleid');
   });
 
@@ -112,13 +107,15 @@ describe('TestComponent', () => {
   it('throwErrorFunction throw Error', () => {
     expect(() => component.throwErrorFunction()).toThrow();
     expect(() => component.throwErrorFunction()).toThrow(Error);
-    expect(() => component.throwErrorFunction()).toThrow('Oh there is an error!');
+    expect(() => component.throwErrorFunction()).toThrow(
+      'Oh there is an error!'
+    );
   });
 
   // 2. Komponenten Tests
   it('should getServiceData set serviceData', () => {
     const expRes = {
-      name: 'Test'
+      name: 'Test',
     };
     jest.spyOn(testServiceMock, 'getDataV1').mockReturnValue(of(expRes));
     component.getServiceData();
@@ -129,9 +126,11 @@ describe('TestComponent', () => {
     const errorResponse = new HttpErrorResponse({
       error: 'test 404 error',
       status: 404,
-      statusText: 'Not Found'
-    })
-    jest.spyOn(testServiceMock, 'getDataV1').mockReturnValue(throwError(() => errorResponse));
+      statusText: 'Not Found',
+    });
+    jest
+      .spyOn(testServiceMock, 'getDataV1')
+      .mockReturnValue(throwError(() => errorResponse));
     component.getServiceData();
     expect(component.errorMessage).toBe('Not Found');
   });
@@ -156,7 +155,6 @@ describe('TestComponent', () => {
     jest.advanceTimersByTime(1000); // 1000 ms warten
     // jest.runAllTimers(); // Geht auch / startet alle Timer
     expect(component.timeoutResponse).toBe('setTimeoutCheck'); // Nach setTimeout complete
-    expect(setTimeout).toBeCalledTimes(1)
+    expect(setTimeout).toBeCalledTimes(1);
   });
-
 });
