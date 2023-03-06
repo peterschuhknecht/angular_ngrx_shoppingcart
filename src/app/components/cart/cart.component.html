@@ -1,11 +1,4 @@
 <div class="cart">
   Warenkorb ({{ cartItems }} Artikel)
-  <div *ngFor="let item of cart$ | async" class="product">
-    <div class="title">{{ item.title }}</div>
-    <div class="price">{{ item.price }} Euro</div>
-    <div style="clear: both;"></div>
-    <div class="description">Anzahl: 1</div>
-    <button class="button" (click)="removeProductFromCart(item)">Entfernen</button>
-    <div style="clear: both;"></div>
-  </div>
+  <app-product-list *ngIf="cart$ | async as products" [products]="products" buttonName="Entfernen" (newItemEvent)="removeProductFromCart($event)"></app-product-list>
 </div>

@@ -16,6 +16,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
 import { TestdataService } from './_shared/services/testdata.service';
 import { TestComponent } from './_shared/components/test/test.component';
+import { ProductListComponent } from './_shared/components/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TestComponent } from './_shared/components/test/test.component';
     CartComponent,
     MenuComponent,
     TestComponent,
+    ProductListComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,8 @@
+<div *ngFor="let product of products" class="product">
+    <div class="title">{{ product.title }}</div>
+    <div class="price">{{ product.price }} Euro</div>
+    <div style="clear: both;"></div>
+    <div class="description">{{ product.description }}</div>
+    <button class="button" (click)="onButton(product)"> {{ buttonName }}</button>
+    <div style="clear: both;"></div>
+</div>

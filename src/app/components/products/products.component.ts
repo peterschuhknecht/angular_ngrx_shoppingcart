@@ -25,11 +25,11 @@ export class ProductsComponent implements OnInit {
     this.cart$ = this.cartStore.select('cart');
   }
 
-  public addProductToCart(product: Product) {
-    this.cartStore.dispatch(addProduct({ cart: product }));
-  }
-
   ngOnInit() {
     this.productsStore.dispatch(getProducts());
+  }
+
+  public addProductToCart(product: Product) {
+    this.cartStore.dispatch(addProduct({ cart: product }));
   }
 }
