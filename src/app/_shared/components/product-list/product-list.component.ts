@@ -14,4 +14,9 @@ export class ProductListComponent {
   public onButton(value: Product): void {
     this.newItemEvent.emit(value);
   }
+
+  // Für Performance
+  public track(index:number, value: string): string{
+    return value;
+  }
 }

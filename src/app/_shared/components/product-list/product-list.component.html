@@ -1,4 +1,4 @@
-<div *ngFor="let product of products" class="product" appHighlight="blue">
+<div *ngFor="let product of products; trackBy: track" class="product" appHighlight="blue">
     <div class="title">{{ product.title }}</div>
     <div class="price">{{ product.price }} Euro</div>
     <div style="clear: both;"></div>
