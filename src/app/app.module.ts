@@ -18,6 +18,10 @@ import { TestdataService } from './_shared/services/testdata.service';
 import { TestComponent } from './_shared/components/test/test.component';
 import { ProductListComponent } from './_shared/components/product-list/product-list.component';
 import { HighlightDirective } from './_shared/directives/highlight.directive';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,9 @@ import { HighlightDirective } from './_shared/directives/highlight.directive';
     HighlightDirective,
   ],
   imports: [
+    MessagesModule,
+    ButtonModule,
+    CardModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -40,7 +47,9 @@ import { HighlightDirective } from './_shared/directives/highlight.directive';
     EffectsModule.forRoot([ProductsEffects]),
     HttpClientInMemoryWebApiModule.forRoot(TestdataService),
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

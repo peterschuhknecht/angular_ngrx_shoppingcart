@@ -4,7 +4,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
   selector: '[appHighlight]',
 })
 export class HighlightDirective {
-  @Input() appHighlight = '#000000';
+  @Input() appHighlight = 'bold';
 
   constructor(private el: ElementRef) {}
 
@@ -13,10 +13,10 @@ export class HighlightDirective {
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.highlight('');
+    this.highlight('normal');
   }
 
-  private highlight(color: string): void {
-    this.el.nativeElement.style.borderColor = color;
+  private highlight(weight: string): void {
+    this.el.nativeElement.style.fontWeight = weight;
   }
 }

@@ -1,5 +1,5 @@
-<div class="products">
-  Produkte
+<p-card header="Produkte" [style]="{'width': '700px', 'background-color': 'rgb(241, 241, 241)'}">
   <app-product-list *ngIf="products$ | async as products" [products]="products" buttonName="In den Warenkorb"
     (newItemEvent)="addProductToCart($event)"></app-product-list>
-</div>
+  <div style="clear:both"></div>
+</p-card>

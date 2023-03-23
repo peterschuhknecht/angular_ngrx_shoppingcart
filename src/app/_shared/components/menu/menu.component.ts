@@ -3,6 +3,7 @@ import { Product } from '../../models/Product';
 import { Observable } from 'rxjs';
 import { CartState } from '../../store/reducers/cart.reducer';
 import { Store } from '@ngrx/store';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-menu',
@@ -12,10 +13,11 @@ import { Store } from '@ngrx/store';
 export class MenuComponent implements OnInit {
   cart$: Observable<readonly Product[]>;
   cartItems = 0;
-  showGreenMessage = false;
-  showRedMessage = false;
 
-  constructor(private cartStore: Store<CartState>) {
+  constructor(
+    private cartStore: Store<CartState>,
+    private messageService: MessageService
+  ) {
     this.cart$ = this.cartStore.select('cart');
   }
 
@@ -27,11 +29,19 @@ export class MenuComponent implements OnInit {
     this.cart$.subscribe(async (product: readonly Product[]) => {
       // Warenkorbmeldung anzeigen je nach hinzugefügt oder entfernt
       if (product.length !== 0 && this.cartItems < product.length) {
-        this.showGreenMessage = true;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Produkt hinzugefügt ',
+          detail: '',
+        });
       }
 
       if (this.cartItems > product.length) {
-        this.showRedMessage = true;
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Produkt entfernt ',
+          detail: '',
+        });
       }
 
       // Anzahl Warenkorbartikel updaten
@@ -39,8 +49,7 @@ export class MenuComponent implements OnInit {
 
       // Alle Meldungen nach einer Sekunde schließen
       setTimeout(() => {
-        this.showGreenMessage = false;
-        this.showRedMessage = false;
+        this.messageService.clear();
       }, 1000);
     });
   }

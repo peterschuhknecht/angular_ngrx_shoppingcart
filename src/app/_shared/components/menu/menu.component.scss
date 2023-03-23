@@ -1,15 +1,11 @@
-.greenMessage {
-  border: 1px solid green;
-  margin-top: 10px;
-  padding: 15px;
-  text-align: center;
-  background-color: #b6f8b6;
+.menu {
+  margin: 20px 0 20px 0;
 }
 
-.redMessage {
-  border: 1px solid red;
-  margin-top: 10px;
-  padding: 15px;
-  text-align: center;
-  background-color: #ff9d9d;
+p-messages {
+  float: right !important;
+  position: absolute !important;
+  right: 12px !important;
+  top: 0px !important;
+  z-index: 1000 !important;
 }

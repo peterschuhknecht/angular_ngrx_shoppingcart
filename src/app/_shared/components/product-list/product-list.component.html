@@ -1,8 +1,15 @@
-<div *ngFor="let product of products; trackBy: track" class="product" appHighlight="blue">
-    <div class="title">{{ product.title }}</div>
+<p-card header="{{ product.title }}" subheader="{{ product.price }} Euro" [style]="{width: '300px', 'float': 'left', 'margin': '10px'}"
+    styleClass="shadow-2" *ngFor="let product of products; trackBy: track" class="product">
+    <p appHighlight="bold">{{ product.description }}</p>
+    <ng-template pTemplate="footer">
+        <button pButton class="button p-button-sm p-button-rounded" (click)="onButton(product)">{{ buttonName }}</button>
+    </ng-template>
+
+
+    <!-- <div class="title">{{ product.title }}</div>
     <div class="price">{{ product.price }} Euro</div>
     <div style="clear: both;"></div>
     <div class="description">{{ product.description }}</div>
-    <button class="button" (click)="onButton(product)"> {{ buttonName }}</button>
-    <div style="clear: both;"></div>
-</div>
+    <button pButton class="button p-button-sm p-button-rounded" (click)="onButton(product)"> {{ buttonName }}</button>
+    <div style="clear: both;"></div> -->
+</p-card>
