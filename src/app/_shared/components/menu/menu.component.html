@@ -1,6 +1,6 @@
 <div class="menu">
-    <button pButton class="p-button-sm p-button-rounded p-button-secondary" routerLink="">Produkte</button>&nbsp;
-    <button pButton class="p-button-sm p-button-rounded p-button-secondary" routerLink="/cart"
+    <button id="home-button" pButton class="p-button-sm p-button-rounded p-button-secondary" routerLink="">Produkte</button>&nbsp;
+    <button id="cart-button" pButton class="p-button-sm p-button-rounded p-button-secondary" routerLink="/cart"
         [disabled]="(cart$ | async)?.length == 0">
         Warenkorb ({{ cartItems }})
     </button>

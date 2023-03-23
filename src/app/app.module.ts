@@ -45,7 +45,7 @@ import { MessageService } from 'primeng/api';
       maxAge: 5,
     }),
     EffectsModule.forRoot([ProductsEffects]),
-    HttpClientInMemoryWebApiModule.forRoot(TestdataService),
+    HttpClientInMemoryWebApiModule.forRoot(TestdataService, { delay: 500 }),
   ],
   providers: [
     MessageService
