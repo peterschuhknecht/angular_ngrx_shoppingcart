@@ -12,7 +12,7 @@ import { MenuComponent } from './_shared/components/menu/menu.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './_shared/store/effects/products.effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './_shared/components/test/test.component';
 import { ProductListComponent } from './_shared/components/product-list/product-list.component';
 import { HighlightDirective } from './_shared/directives/highlight.directive';
@@ -21,6 +21,7 @@ import { CardModule } from 'primeng/card';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpErrorInterceptor } from './_shared/interceptors/http-error-interceptor';
 
 @NgModule({
   declarations: [
@@ -40,15 +41,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ products: productsReducer, cart: cartReducer }, {}),
+    StoreModule.forRoot({products: productsReducer, cart: cartReducer}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 5,
     }),
     EffectsModule.forRoot([ProductsEffects])
   ],
   providers: [
-    MessageService
+    MessageService,
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
