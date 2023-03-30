@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,7 @@ import { MenuComponent } from './_shared/components/menu/menu.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './_shared/store/effects/products.effects';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './_shared/components/test/test.component';
 import { ProductListComponent } from './_shared/components/product-list/product-list.component';
 import { HighlightDirective } from './_shared/directives/highlight.directive';
@@ -21,7 +21,7 @@ import { CardModule } from 'primeng/card';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpErrorInterceptor } from './_shared/interceptors/http-error-interceptor';
+import { GlobalErrorHandler } from './_shared/handlers/global-error-handler';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,10 @@ import { HttpErrorInterceptor } from './_shared/interceptors/http-error-intercep
   ],
   providers: [
     MessageService,
-    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    }
   ],
   bootstrap: [AppComponent],
 })
