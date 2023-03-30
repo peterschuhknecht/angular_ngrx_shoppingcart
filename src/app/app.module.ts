@@ -12,9 +12,7 @@ import { MenuComponent } from './_shared/components/menu/menu.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './_shared/store/effects/products.effects';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
-import { TestdataService } from './_shared/services/testdata.service';
 import { TestComponent } from './_shared/components/test/test.component';
 import { ProductListComponent } from './_shared/components/product-list/product-list.component';
 import { HighlightDirective } from './_shared/directives/highlight.directive';
@@ -44,8 +42,7 @@ import { MessageService } from 'primeng/api';
     StoreDevtoolsModule.instrument({
       maxAge: 5,
     }),
-    EffectsModule.forRoot([ProductsEffects]),
-    HttpClientInMemoryWebApiModule.forRoot(TestdataService, { delay: 500 }),
+    EffectsModule.forRoot([ProductsEffects])
   ],
   providers: [
     MessageService

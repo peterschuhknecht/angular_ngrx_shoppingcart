@@ -1,11 +1,17 @@
 const express = require("express")
 const app = express()
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 const products =
   [
     {
       id: 'product-0',
-      title: 'Produkteee Eins',
+      title: 'Produkt Eins',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing dolor',
       price: 1245,
@@ -55,7 +61,7 @@ const products =
   ]
 app.get("/api/products", (req, res) => {
   console.log("API CALL")
-  res.json(products)
+  res.status(200).json(products)
 })
 
 app.listen(3000)
