@@ -20,6 +20,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MessageService } from 'primeng/api';
     HighlightDirective,
   ],
   imports: [
+    BrowserAnimationsModule,
     MessagesModule,
     ButtonModule,
     CardModule,
