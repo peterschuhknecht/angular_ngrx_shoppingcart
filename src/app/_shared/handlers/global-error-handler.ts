@@ -2,9 +2,6 @@ import { ErrorHandler, Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 
-export const maxRetries = 2;
-export const delayMs = 2000;
-
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
   constructor(

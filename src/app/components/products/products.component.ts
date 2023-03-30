@@ -30,6 +30,6 @@ export class ProductsComponent implements OnInit {
   }
 
   public addProductToCart(product: Product) {
-    this.cartStore.dispatch(addProduct({ cart: product }));
+    this.cartStore.dispatch(addProduct({cart: product}));
   }
 }
