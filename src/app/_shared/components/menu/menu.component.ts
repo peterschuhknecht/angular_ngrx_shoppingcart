@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
   cart$: Observable<readonly Product[]>;
-  cartItems = 0;
+  cartItems: number = 0;
 
   constructor(
     private cartStore: Store<CartState>,
@@ -27,11 +27,13 @@ export class MenuComponent implements OnInit {
 
   private subscribeToCart(): void {
     this.cart$.subscribe(async (product: readonly Product[]) => {
+      this.messageService.clear();
+
       // Warenkorbmeldung anzeigen je nach hinzugefügt oder entfernt
       if (product.length !== 0 && this.cartItems < product.length) {
         this.messageService.add({
           severity: 'success',
-          summary: 'Produkt hinzugefügt ',
+          summary: 'Produkt hinzugefügt',
           detail: '',
         });
       }
@@ -39,18 +41,13 @@ export class MenuComponent implements OnInit {
       if (this.cartItems > product.length) {
         this.messageService.add({
           severity: 'warn',
-          summary: 'Produkt entfernt ',
+          summary: 'Produkt entfernt',
           detail: '',
         });
       }
 
       // Anzahl Warenkorbartikel updaten
       this.cartItems = product.length;
-
-      // Alle Meldungen nach einer Sekunde schließen
-      setTimeout(() => {
-        this.messageService.clear();
-      }, 1000);
     });
   }
 }
